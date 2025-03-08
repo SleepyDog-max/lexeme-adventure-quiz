@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexeme Adventure Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .quiz-container, .summary-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .question h3 {
+            margin: 0 0 10px;
+            color: #2980b9;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+        .true-btn {
+            background: #27ae60;
+            color: white;
+        }
+        .true-btn:hover {
+            background: #219653;
+        }
+        .false-btn {
+            background: #c0392b;
+            color: white;
+        }
+        .false-btn:hover {
+            background: #992d22;
+        }
+        .restart-btn {
+            background: #3498db;
+            color: white;
+            display: block;
+            margin: 20px auto;
+        }
+        .restart-btn:hover {
+            background: #2980b9;
+        }
+        .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            background: #d5f5e3;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        .answer.wrong {
+            background: #f5d7d7;
+        }
+        .summary-container {
+            display: none;
+            text-align: left;
+        }
+        .summary-container h2 {
+            color: #2c3e50;
+        }
+        .summary-item {
+            margin: 20px 0;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+        }
+        .correct {
+            color: #27ae60;
+        }
+        .incorrect {
+            color: #c0392b;
+        }
+        .explanation {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟 Lexeme Adventure Quiz 🌟</h1>
+    <div class="quiz-container" id="quiz">
+        <div class="question">
+            <h3>1. “eat”, “eats”, “eaten”, “eating” are word forms belonging to the same lexeme “eat”.</h3>
+            <div class="buttons">
+                <button class="true-btn" onclick="answerQuestion(1, true)">True</button>
+                <button class="false-btn" onclick="answerQuestion(1, false)">False</button>
+            </div>
+            <div id="answer-1" class="answer">
+                ✅ <strong>True!</strong> Eat, eats, eaten, and eating are all inflected forms of the verb "eat". They belong to the same lexeme because they share the same core meaning and differ only in grammatical function.
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>2. “child” and “children” are different forms of the same lexeme.</h3>
+            <div class="buttons">
+                <button class="true-btn" onclick="answerQuestion(2, true)">True</button>
+                <button class="false-btn" onclick="answerQuestion(2, false)">False</button>
+            </div>
+            <div id="answer-2" class="answer">
+                ✅ <strong>True!</strong> Child and children are different forms of the same noun lexeme "child", with "children" being the irregular plural form.
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>3. “understand” and “misunderstand” belong to the same lexeme because they share the root “understand”.</h3>
+            <div class="buttons">
+                <button class="true-btn" onclick="answerQuestion(3, true)">True</button>
+                <button class="false-btn" onclick="answerQuestion(3, false)">False</button>
+            </div>
+            <div id="answer-3" class="answer wrong">
+                ❌ <strong>False!</strong> Understand and misunderstand share the root "understand", but "misunderstand" has a prefix (mis-) that changes the meaning. Since a lexeme represents related word forms with the same core meaning, these are separate lexemes.
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>4. “strong”, “stronger”, “strongest” are word forms belonging to the same lexeme “strong”.</h3>
+            <div class="buttons">
+                <button class="true-btn" onclick="answerQuestion(4, true)">True</button>
+                <button class="false-btn" onclick="answerQuestion(4, false)">False</button>
+            </div>
+            <div id="answer-4" class="answer">
+                ✅ <strong>True!</strong> Strong, stronger, and strongest are all inflected forms of the adjective "strong", showing degrees of comparison. They belong to the same lexeme.
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>5. “history”, “historian”, and “historical” belong to the same lexeme because they share the root “history”.</h3>
+            <div class="buttons">
+                <button class="true-btn" onclick="answerQuestion(5, true)">True</button>
+                <button class="false-btn" onclick="answerQuestion(5, false)">False</button>
+            </div>
+            <div id="answer-5" class="answer wrong">
+                ❌ <strong>False!</strong> While history, historian, and historical share a common root ("history"), they are different derivational forms rather than inflected forms. Historian is a noun derived from history, and historical is an adjective, making them distinct lexemes.
+            </div>
+        </div>
+        <button class="restart-btn" onclick="restartQuiz()" id="restart-quiz">Restart Quiz</button>
+    </div>
+
+    <div class="summary-container" id="summary">
+        <h2>📜 Quiz Summary</h2>
+        <p>Your Score: <span id="score">0</span>/5</p>
+        <div id="summary-details"></div>
+        <button class="restart-btn" onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+
+    <script>
+        let answers = {};
+        const correctAnswers = {
+            1: true,
+            2: true,
+            3: false,
+            4: true,
+            5: false
+        };
+        const questions = {
+            1: '“eat”, “eats”, “eaten”, “eating” are word forms belonging to the same lexeme “eat”.',
+            2: '“child” and “children” are different forms of the same lexeme.',
+            3: '“understand” and “misunderstand” belong to the same lexeme because they share the root “understand”.',
+            4: '“strong”, “stronger”, “strongest” are word forms belonging to the same lexeme “strong”.',
+            5: '“history”, “historian”, and “historical” belong to the same lexeme because they share the root “history”.'
+        };
+        const explanations = {
+            1: 'Eat, eats, eaten, and eating are all inflected forms of the verb "eat". They belong to the same lexeme because they share the same core meaning and differ only in grammatical function.',
+            2: 'Child and children are different forms of the same noun lexeme "child", with "children" being the irregular plural form.',
+            3: 'Understand and misunderstand share the root "understand", but "misunderstand" has a prefix (mis-) that changes the meaning. Since a lexeme represents related word forms with the same core meaning, these are separate lexemes.',
+            4: 'Strong, stronger, and strongest are all inflected forms of the adjective "strong", showing degrees of comparison. They belong to the same lexeme.',
+            5: 'While history, historian, and historical share a common root ("history"), they are different derivational forms rather than inflected forms. Historian is a noun derived from history, and historical is an adjective, making them distinct lexemes.'
+        };
+
+        function answerQuestion(questionNum, userChoice) {
+            const answerDiv = document.getElementById(`answer-${questionNum}`);
+            const correctAnswer = correctAnswers[questionNum];
+
+            answers[questionNum] = userChoice;
+            answerDiv.style.display = 'block';
+
+            if (userChoice === correctAnswer) {
+                alert("🎉 Correct! You're a lexeme legend!");
+            } else {
+                alert("😅 Oops! Not quite. Check the explanation!");
+            }
+
+            // Disable buttons after selection
+            const buttons = document.querySelectorAll(`.question:nth-child(${questionNum}) .buttons button`);
+            buttons.forEach(button => button.disabled = true);
+
+            // Check if all questions are answered
+            if (Object.keys(answers).length === 5) {
+                showSummary();
+            }
+        }
+
+        function showSummary() {
+            let score = 0;
+            let summaryHTML = '';
+
+            for (let i = 1; i <= 5; i++) {
+                const userAnswer = answers[i];
+                const correctAnswer = correctAnswers[i];
+                const isCorrect = userAnswer === correctAnswer;
+                if (isCorrect) score++;
+
+                summaryHTML += `
+                    <div class="summary-item">
+                        <strong>Q${i}: ${questions[i]}</strong><br>
+                        Your answer: <span class="${isCorrect ? 'correct' : 'incorrect'}">${userAnswer ? 'True' : 'False'}</span> 
+                        (${isCorrect ? 'Correct' : 'Incorrect'} - Correct answer: ${correctAnswer ? 'True' : 'False'})<br>
+                        <div class="explanation">${explanations[i]}</div>
+                    </div>`;
+            }
+
+            document.getElementById('score').textContent = score;
+            document.getElementById('summary-details').innerHTML = summaryHTML;
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('summary').style.display = 'block';
+        }
+
+        function restartQuiz() {
+            answers = {};
+            document.getElementById('quiz').style.display = 'block';
+            document.getElementById('summary').style.display = 'none';
+
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`answer-${i}`).style.display = 'none';
+                const buttons = document.querySelectorAll(`.question:nth-child(${i}) .buttons button`);
+                buttons.forEach(button => button.disabled = false);
+            }
+        }
+    </script>
+</body>
+</html>
